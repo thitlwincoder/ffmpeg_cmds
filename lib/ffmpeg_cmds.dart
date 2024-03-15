@@ -1,2 +1,4 @@
 /// A Very Good Project created by Very Good CLI.
-library;
+library ffmpeg_cmds;
+
+export 'src/filter.dart';
