@@ -1,8 +1,10 @@
+import 'package:ffmpeg_cmds/ffmpeg_cmds.dart';
+
 ///
 /// Draw a text string or text from a specified file on top of a video,
 /// using the libfreetype library.
 ///
-class DrawText {
+class DrawText implements Filter {
   /// DrawText
   DrawText({
     this.box,
@@ -198,4 +200,48 @@ class DrawText {
   ///
   /// The default value of x and y is `0`.
   int? x, y;
+
+  @override
+  String get name => 'drawtext';
+
+  @override
+  Map<String, dynamic> get options => {
+        'box': box,
+        'boxborderw': boxborderw,
+        'boxcolor': boxcolor,
+        'line_spacing': lineSpacing,
+        'text_align': textAlign,
+        'y_align': yAlign,
+        'borderw': borderw,
+        'bordercolor': bordercolor,
+        'expansion': expansion,
+        'basetime': basetime,
+        'fix_bounds': fixBounds,
+        'fontcolor': fontcolor,
+        'fontcolor_expr': fontcolorExpr,
+        'font': font,
+        'fontfile': fontfile,
+        'alpha': alpha,
+        'fontsize': fontsize,
+        'text_shaping': textShaping,
+        'ft_load_flags': ftLoadFlags,
+        'shadowcolor': shadowcolor,
+        'boxw': boxw,
+        'boxh': boxh,
+        'shadowx': shadowx,
+        'shadowy': shadowy,
+        'start_number': startNumber,
+        'tabsize': tabsize,
+        'timecode': timecode,
+        'timecode_rate': timecodeRate,
+        'rate': rate,
+        'r': r,
+        'tc24hmax': tc24hmax,
+        'text': text,
+        'textfile': textfile,
+        'text_source': textSource,
+        'reload': reload,
+        'x': x,
+        'y': y,
+      };
 }
