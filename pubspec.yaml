@@ -1,0 +1,9 @@
+name: ffmpeg_cmds
+description: A Very Good Project created by Very Good CLI.
+version: 0.1.0+1
+
+environment:
+  sdk: "^3.3.0"
+
+dev_dependencies:
+  very_good_analysis: ^5.1.0
