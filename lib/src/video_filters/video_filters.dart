@@ -13,6 +13,7 @@ export 'drawtext.dart';
 export 'fade.dart';
 export 'rotate.dart';
 export 'scale.dart';
+export 'xcorrelate.dart';
 export 'xfade.dart';
 export 'xmedian.dart';
 export 'xstack.dart';
