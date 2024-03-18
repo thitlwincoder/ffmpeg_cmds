@@ -6,7 +6,7 @@ class Filter {
     required this.options,
   });
 
-  /// key
+  /// name
   final String name;
 
   /// options
