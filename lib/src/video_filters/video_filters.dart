@@ -14,6 +14,7 @@ export 'fade.dart';
 export 'rotate.dart';
 export 'scale.dart';
 export 'xfade.dart';
+export 'xmedian.dart';
 export 'xstack.dart';
 export 'zoompan.dart';
 export 'zscale.dart';
