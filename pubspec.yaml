@@ -1,9 +1,13 @@
 name: ffmpeg_cmds
-description: A Very Good Project created by Very Good CLI.
-version: 0.1.0+1
-
+description: ffmpeg commands for dart
+version: 0.0.1
+repository: https://github.com/thitlwincoder/ffmpeg_cmds
 environment:
   sdk: "^3.3.0"
+
+funding:
+  - https://paypal.me/thitlwinsoe260
+  - https://ko-fi.com/thitlwincoder
 
 dev_dependencies:
   very_good_analysis: ^5.1.0

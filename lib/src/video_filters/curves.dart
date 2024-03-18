@@ -75,18 +75,18 @@ class Curves implements Filter {
 
   @override
   Map<String, dynamic> get options => {
-    'preset': preset,
-    'master': master,
-    'm':m,
-    'red': red,
-    'r':r,
-    'green': green,
-    'g':g,
-    'blue': blue,
-    'b':b,
-    'all': all,
-    'psfile':psfile,
-    'plot': plot,
-    'interp': interp,
-  };
+        'preset': preset,
+        'master': master,
+        'm': m,
+        'red': red,
+        'r': r,
+        'green': green,
+        'g': g,
+        'blue': blue,
+        'b': b,
+        'all': all,
+        'psfile': psfile,
+        'plot': plot,
+        'interp': interp,
+      };
 }
