@@ -2,3 +2,4 @@
 library ffmpeg_cmds;
 
 export 'src/filter.dart';
+export 'src/video_filters/video_filters.dart';

@@ -16,7 +16,7 @@ class Filter {
   String toString() {
     options.removeWhere((key, value) => value == null);
 
-    final cmds = options.keys.map((e) => '$e=${options[e]}').join(':');
+    final cmds = options.keys.map((e) => '$e="${options[e]}"').join(':');
 
     return '$name=$cmds';
   }
