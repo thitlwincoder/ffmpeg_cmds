@@ -199,7 +199,7 @@ class DrawText implements Filter {
   /// The expressions which specify the offsets where text will be drawn within the video frame. They are relative to the top/left border of the output image.
   ///
   /// The default value of x and y is `0`.
-  int? x, y;
+  Object? x, y;
 
   @override
   String get name => 'drawtext';
