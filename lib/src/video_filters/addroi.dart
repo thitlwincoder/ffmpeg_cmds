@@ -1,6 +1,12 @@
 import 'package:ffmpeg_cmds/ffmpeg_cmds.dart';
 
 /// Mark a region of interest in a video frame.
+///
+/// The parameters [x], [y], [w] and [h] are expressions, and may contain the following variables:
+///
+/// `iw` Width of the input frame.
+///
+/// `ih` Height of the input frame.
 class Addroi implements Filter {
   /// Addroi
   Addroi({
@@ -13,22 +19,16 @@ class Addroi implements Filter {
   });
 
   /// Region distance in pixels from the left edge of the frame.
-  int? x;
+  Object? x;
 
   /// Region distance in pixels from the top edge of the frame.
-  int? y;
+  Object? y;
 
   /// Region width in pixels.
-  int? w;
+  Object? w;
 
   /// Region height in pixels.
-  ///
-  /// The parameters x, y, w and h are expressions, and may contain the following variables:
-  ///
-  /// `iw` Width of the input frame.
-  ///
-  /// `ih` Height of the input frame.
-  int? h;
+  Object? h;
 
   /// Quantisation offset to apply within the region.
   int? qoffset;
