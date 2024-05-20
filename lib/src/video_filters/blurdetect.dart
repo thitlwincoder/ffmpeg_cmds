@@ -3,7 +3,7 @@ import 'package:ffmpeg_cmds/ffmpeg_cmds.dart';
 /// Determines blurriness of frames without altering the input frames.
 ///
 /// Based on Marziliano, Pina, et al. "A no-reference perceptual blur metric." Allows for a block-based abbreviation.
-class BlurDetect implements Filter {
+class BlurDetect extends Filter {
   /// BlurDetect
   BlurDetect({
     this.low,

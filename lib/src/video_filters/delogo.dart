@@ -1,7 +1,7 @@
 import 'package:ffmpeg_cmds/ffmpeg_cmds.dart';
 
 /// Suppress a TV station logo by a simple interpolation of the surrounding pixels. Just set a rectangle covering the logo and watch it disappear (and sometimes something even uglier appear - your mileage may vary).
-class Delogo implements Filter {
+class Delogo extends Filter {
   /// Delogo
   Delogo({
     this.x,

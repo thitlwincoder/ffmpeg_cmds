@@ -1,20 +1,17 @@
 /// CMD
-class Filter {
+abstract class Filter {
   /// CMD
-  Filter({
-    required this.name,
-    required this.options,
-  });
+  Filter();
 
   /// name
-  final String name;
+  String get name;
 
   /// options
-  final Map<String, dynamic> options;
+  Map<String, dynamic> get options;
 
   @override
   String toString() {
-    options.removeWhere((key, value) => value == null);
+    final options = this.options..removeWhere((key, value) => value == null);
 
     final cmds = options.keys.map((e) => '$e="${options[e]}"').join(':');
 

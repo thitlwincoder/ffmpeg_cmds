@@ -1,7 +1,7 @@
 import 'package:ffmpeg_cmds/ffmpeg_cmds.dart';
 
 /// Read audio and/or video stream(s) from a movie container.
-class Movie implements Filter {
+class Movie extends Filter {
   /// Movie
   Movie({
     this.formatName,

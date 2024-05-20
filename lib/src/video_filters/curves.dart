@@ -7,7 +7,7 @@ import 'package:ffmpeg_cmds/ffmpeg_cmds.dart';
 /// By default, a component curve is defined by the two points (0;0) and (1;1). This creates a straight line where each original pixel value is "adjusted" to its own value, which means no change to the image.
 ///
 /// The filter allows you to redefine these two points and add some more. A new curve will be define to pass smoothly through all these new coordinates. The new defined points needs to be strictly increasing over the x-axis, and their x and y values must be in the [0;1] interval. The curve is formed by using a natural or monotonic cubic spline interpolation, depending on the interp option (default: `natural`). The `natural` spline produces a smoother curve in general while the monotonic (`pchip`) spline guarantees the transitions between the specified points to be monotonic. If the computed curves happened to go outside the vector spaces, the values will be clipped accordingly.
-class Curves implements Filter {
+class Curves extends Filter {
   /// Curves
   Curves({
     this.preset,

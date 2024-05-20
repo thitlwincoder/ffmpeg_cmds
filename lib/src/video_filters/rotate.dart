@@ -1,7 +1,7 @@
 import 'package:ffmpeg_cmds/ffmpeg_cmds.dart';
 
 /// Rotate video by an arbitrary angle expressed in radians.
-class Rotate implements Filter {
+class Rotate extends Filter {
   /// Rotate
   Rotate({
     this.angle,

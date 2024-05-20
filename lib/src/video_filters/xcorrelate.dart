@@ -3,7 +3,7 @@ import 'package:ffmpeg_cmds/ffmpeg_cmds.dart';
 /// Apply normalized cross-correlation between first and second input video stream.
 ///
 /// Second input video stream dimensions must be lower than first input video stream.
-class XCorrelate implements Filter {
+class XCorrelate extends Filter {
   /// XCorrelate
   XCorrelate({
     this.planes,

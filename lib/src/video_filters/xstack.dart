@@ -3,7 +3,7 @@ import 'package:ffmpeg_cmds/ffmpeg_cmds.dart';
 /// Stack video inputs into custom layout.
 ///
 /// All streams must be of same pixel format.
-class XStack implements Filter {
+class XStack extends Filter {
   /// XStack
   XStack({
     this.inputs,

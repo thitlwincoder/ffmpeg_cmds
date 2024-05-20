@@ -6,7 +6,7 @@ import 'package:ffmpeg_cmds/ffmpeg_cmds.dart';
 ///
 /// If the input image format is different from the format requested by the next filter, the zscale filter will convert the input to the requested format.
 
-class ZScale implements Filter {
+class ZScale extends Filter {
   /// ZScale
   ZScale({
     this.width,

@@ -1,7 +1,7 @@
 import 'package:ffmpeg_cmds/ffmpeg_cmds.dart';
 
 /// Remove blocking artifacts from input video.
-class Deblock implements Filter {
+class Deblock extends Filter {
   /// Deblock
   Deblock({
     this.filter,

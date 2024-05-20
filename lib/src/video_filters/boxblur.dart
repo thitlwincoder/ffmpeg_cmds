@@ -1,7 +1,7 @@
 import 'package:ffmpeg_cmds/ffmpeg_cmds.dart';
 
 /// Apply a boxblur algorithm to the input video.
-class BoxBlur implements Filter {
+class BoxBlur extends Filter {
   /// BoxBlur
   BoxBlur({
     this.lumaRadius,

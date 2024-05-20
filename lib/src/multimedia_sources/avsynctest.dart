@@ -3,7 +3,7 @@ import 'package:ffmpeg_cmds/ffmpeg_cmds.dart';
 /// Generate an Audio/Video Sync Test.
 ///
 /// Generated stream periodically shows flash video frame and emits beep in audio. Useful to inspect A/V sync issues.
-class AvSyncTest implements Filter {
+class AvSyncTest extends Filter {
   /// AvSyncTest
   AvSyncTest({
     this.size,

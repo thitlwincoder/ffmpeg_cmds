@@ -3,7 +3,7 @@ import 'package:ffmpeg_cmds/ffmpeg_cmds.dart';
 /// Apply cross fade from one input video stream to another input video stream. The cross fade is applied for specified duration.
 ///
 /// Both inputs must be constant frame-rate and have the same resolution, pixel format, frame rate and timebase.
-class Xfade implements Filter {
+class Xfade extends Filter {
   /// Xfade
   Xfade({
     this.transition,

@@ -7,7 +7,7 @@ import 'package:ffmpeg_cmds/ffmpeg_cmds.dart';
 /// `iw` Width of the input frame.
 ///
 /// `ih` Height of the input frame.
-class Addroi implements Filter {
+class Addroi extends Filter {
   /// Addroi
   Addroi({
     this.x,

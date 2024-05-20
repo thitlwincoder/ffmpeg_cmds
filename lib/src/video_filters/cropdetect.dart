@@ -3,7 +3,7 @@ import 'package:ffmpeg_cmds/ffmpeg_cmds.dart';
 /// Auto-detect the crop size.
 ///
 /// It calculates the necessary cropping parameters and prints the recommended parameters via the logging system. The detected dimensions correspond to the non-black or video area of the input video according to mode.
-class CropDetect implements Filter {
+class CropDetect extends Filter {
   /// CropDetect
   CropDetect({
     this.mode,

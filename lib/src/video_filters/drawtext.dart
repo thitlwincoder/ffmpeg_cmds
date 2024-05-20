@@ -4,7 +4,7 @@ import 'package:ffmpeg_cmds/ffmpeg_cmds.dart';
 /// Draw a text string or text from a specified file on top of a video,
 /// using the libfreetype library.
 ///
-class DrawText implements Filter {
+class DrawText extends Filter {
   /// DrawText
   DrawText({
     this.box,

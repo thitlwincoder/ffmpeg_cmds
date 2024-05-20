@@ -1,7 +1,7 @@
 import 'package:ffmpeg_cmds/ffmpeg_cmds.dart';
 
 /// Pick median pixels from several input videos.
-class XMedian implements Filter {
+class XMedian extends Filter {
   /// XMedian
   XMedian({
     this.inputs,

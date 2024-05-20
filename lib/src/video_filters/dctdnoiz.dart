@@ -3,7 +3,7 @@ import 'package:ffmpeg_cmds/ffmpeg_cmds.dart';
 /// Denoise frames using 2D DCT (frequency domain filtering).
 ///
 /// This filter is not designed for real time.
-class DCTDNoiz implements Filter {
+class DCTDNoiz extends Filter {
   /// DCTDNoiz
   DCTDNoiz({
     this.sigma,

@@ -1,7 +1,7 @@
 import 'package:ffmpeg_cmds/ffmpeg_cmds.dart';
 
 /// Apply Zoom & Pan effect.
-class ZoomPan implements Filter {
+class ZoomPan extends Filter {
   /// ZoomPan
   ZoomPan({
     this.zoom,

@@ -1,7 +1,7 @@
 import 'package:ffmpeg_cmds/ffmpeg_cmds.dart';
 
 /// Denoise frames using Block-Matching 3D algorithm.
-class Bm3d implements Filter {
+class Bm3d extends Filter {
   /// Bm3d
   Bm3d({
     this.sigma,

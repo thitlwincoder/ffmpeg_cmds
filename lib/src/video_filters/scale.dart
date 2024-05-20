@@ -15,7 +15,7 @@ import 'package:ffmpeg_cmds/ffmpeg_cmds.dart';
 /// - Specify a size abbreviation for the output size:
 ///
 ///   `scale=size=qcif`
-class Scale implements Filter {
+class Scale extends Filter {
   /// Scale
   Scale({
     this.width,

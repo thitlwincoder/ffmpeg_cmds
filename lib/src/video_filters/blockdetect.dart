@@ -3,7 +3,7 @@ import 'package:ffmpeg_cmds/src/filter.dart';
 /// Determines blockiness of frames without altering the input frames.
 ///
 /// Based on Remco Muijs and Ihor Kirenko: "A no-reference blocking artifact measure for adaptive video processing." 2005 13th European signal processing conference.
-class BlockDetect implements Filter {
+class BlockDetect extends Filter {
   /// BlockDetect
   BlockDetect({
     this.periodMin,

@@ -1,7 +1,7 @@
 import 'package:ffmpeg_cmds/ffmpeg_cmds.dart';
 
 /// Crop the input video to given dimensions.
-class Crop implements Filter {
+class Crop extends Filter {
   /// Crop
   Crop({
     this.w,

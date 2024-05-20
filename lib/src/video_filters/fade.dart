@@ -1,7 +1,7 @@
 import 'package:ffmpeg_cmds/ffmpeg_cmds.dart';
 
 /// Apply a fade-in/out effect to the input video.
-class Fade implements Filter {
+class Fade extends Filter {
   /// Fade
   Fade({
     this.type,
