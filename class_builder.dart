@@ -9,13 +9,21 @@ class ClassBuilder {
     required this.name,
     required this.docs,
     required this.maps,
+    required this.force,
   });
 
   final String name;
+  final bool force;
   final List<String> docs;
   final Map<String, String?> maps;
 
   void build(String path) {
+    if (!force) {
+      if (File(path).existsSync()) {
+        return;
+      }
+    }
+
     final cleanDocs = <String>[
       "import 'package:ffmpeg_cmds/ffmpeg_cmds.dart';",
     ];
@@ -38,7 +46,15 @@ class ClassBuilder {
           (b) => b
             ..name = name
             ..type = const Reference('Object?')
-            ..docs.add(maps[name] ?? ''),
+            ..docs.add(
+              maps.entries
+                      .where(
+                        (e) => name.snakeCase.trim() == e.key.snakeCase.trim(),
+                      )
+                      .firstOrNull
+                      ?.value ??
+                  '',
+            ),
         ),
       );
     }
@@ -55,7 +71,9 @@ class ClassBuilder {
     }
 
     for (final name in maps.keys) {
-      addField(name);
+      addField(
+        name.split(',').map((e) => e.length > 1 ? e.camelCase : e).join(', '),
+      );
 
       for (var e in name.split(',')) {
         e = e.trim();

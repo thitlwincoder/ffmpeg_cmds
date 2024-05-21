@@ -35,7 +35,7 @@ class Acrusher extends Filter {
   /// Set mixing amount.
   Object? mix;
 
-  /// Can be linear: lin or logarithmic: log.
+  /// Can be linear: `lin` or logarithmic: `log`.
   Object? mode;
 
   /// Set DC.

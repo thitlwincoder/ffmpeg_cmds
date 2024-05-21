@@ -1,130 +1,76 @@
-import 'dart:io';
+// import 'dart:io';
 
-import 'package:args/args.dart';
-import 'package:html/parser.dart';
-import 'package:html2md/html2md.dart' as html2md;
+// import 'package:args/args.dart';
+// import 'package:html/parser.dart';
+// import 'package:html2md/html2md.dart' as html2md;
+// import 'package:mason_logger/mason_logger.dart';
 
-import 'class_builder.dart';
+// import 'class_builder.dart';
 
-Future<void> main(List<String> args) async {
-  final parser = ArgParser()
-    ..addOption('name', abbr: 'n')
-    ..addOption('path', abbr: 'p');
+// Future<void> main(List<String> args) async {
+//   final parser = ArgParser()
+//     ..addOption('name', abbr: 'n')
+//     ..addOption('path', abbr: 'p');
 
-  final results = parser.parse(args);
+//   final results = parser.parse(args);
 
-  if (!results.wasParsed('name') || !results.wasParsed('path')) return;
+//   if (!results.wasParsed('name') || !results.wasParsed('path')) return;
 
-  final key = results.option('name');
-  final path = results.option('path');
+//   // final key = results.option('name');
+//   final path = results.option('path');
 
-  final filters = File('./filters.html');
-  var html = await filters.readAsString();
+//   final filters = File('./filters.html');
+//   final html = await filters.readAsString();
 
-  html = html.split('<span id="$key">')[1].split('<span')[0];
+//   final soup = parse(html);
 
-  final soup = parse(html);
+//   var ul = soup.querySelectorAll('ul.no-bullet');
 
-  final children = soup.body?.children ?? [];
+//   ul = ul.where((e) => e.children.length > 10).toList();
 
-  final docs = <String>[];
+//   for (var e in ul) {
+//     print(e.children.length);
+//   }
 
-  final maps = <String, String?>{};
+//   return;
 
-  // for (final e in children) {
-  //   var tag = e.localName;
+//   final audio = ul[2];
 
-  //   if (tag == 'p') {
-  //     docs.add(e.text);
-  //   } else if (tag == 'dl') {
-  //     for (var i = 0; i < e.children.length; i++) {
-  //       final d = e.children[i];
+//   final li = audio.querySelectorAll('li');
 
-  //       if (tag == 'dt') {
-  //         maps[d.text] = null;
-  //       } else {
-  //         print(d.querySelectorAll('code').map((e) => ,));
-  //         print('-' * 20);
-  //       }
+//   for (final e in li) {
+//     print(e.innerHtml);
+//     print('-' * 20);
+//   }
 
-  //       // if (i.isEven) {
-  //       //   maps[d.text] = null;
-  //       // } else {
-  //       //   final child = e.children[i - 1];
-  //       //   print(d.innerHtml);
-  //       // }
+//   final logger = Logger(level: Level.verbose);
 
-  //       // if (i == 0) {
-  //       //   maps[d.text] = null;
-  //       // } else {
-  //       //   final child = e.children[i - 1];
+//   final progress = logger.progress('Generating Audio Filters');
 
-  //       //   print(d.innerHtml);
-  //       //   print('-' * 20);
+//   for (final e in li) {
+//     final key = e
+//         .querySelector('a')!
+//         .attributes['data-savepage-href']!
+//         .replaceFirst('#', '');
 
-  //       //   // maps[child.text.trim()] = d.innerHtml.trim();
-  //       // }
-  //     }
-  //   }
-  // }
+//     progress.update('$key Generating');
 
-  for (final e in children) {
-    final eChildren = e.children;
+//     try {
+//       if (key.toLowerCase().contains(RegExp('command|example'))) continue;
 
-    if (eChildren.isEmpty) {
-      docs.add(html2md.convert(e.innerHtml));
-      continue;
-    }
+//       final data = getData(html, key);
 
-    for (var i = 0; i < eChildren.length; i++) {
-      final children = eChildren[i].children;
-      if (children.isEmpty) continue;
+//       ClassBuilder(
+//         name: key,
+//         docs: data.docs,
+//         maps: data.maps,
+//       ).build('$path/$key.dart');
 
-      final tag = children.first.localName;
-      final name = children.first.text;
+//       progress.complete('$key Success');
+//     } catch (e) {
+//       progress.fail('$key Fail');
 
-      if (tag == 'samp') {
-        maps[name] = null;
-      } else if (tag == 'p') {
-        final key = maps.keys.firstWhere((e) => maps[e] == null);
-
-        maps[key] = html2md.convert(
-          eChildren[i].innerHtml,
-          rules: [
-            html2md.Rule(
-              'add-cmd',
-              filterFn: (node) {
-                return node.nodeName == 'p' || node.nodeName == 'samp';
-              },
-              replacement: (content, node) {
-                return '/// $content';
-              },
-            ),
-            html2md.Rule(
-              'set-data',
-              filterFn: (node) {
-                return node.nodeName == 'dl';
-              },
-              replacement: (content, node) {
-                final buffer = StringBuffer()..writeln();
-                final nodes = node.childNodes().toList();
-                for (var i = 0; i < nodes.length; i++) {
-                  final n = nodes[i];
-                  if (i.isEven) {
-                    buffer.write('/// - `${n.textContent}`');
-                  } else {
-                    buffer.writeln(' ${n.textContent}');
-                  }
-                }
-                buffer.writeln('///');
-                return buffer.toString();
-              },
-            ),
-          ],
-        );
-      }
-    }
-  }
-
-  ClassBuilder(name: key!, docs: docs, maps: maps).build(path!);
-}
+//       continue;
+//     }
+//   }
+// }
