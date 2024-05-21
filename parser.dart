@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:args/args.dart';
 import 'package:html/parser.dart';
+import 'package:html2md/html2md.dart' as html2md;
 
 import 'class_builder.dart';
 
@@ -30,11 +31,48 @@ Future<void> main(List<String> args) async {
 
   final maps = <String, String?>{};
 
+  // for (final e in children) {
+  //   var tag = e.localName;
+
+  //   if (tag == 'p') {
+  //     docs.add(e.text);
+  //   } else if (tag == 'dl') {
+  //     for (var i = 0; i < e.children.length; i++) {
+  //       final d = e.children[i];
+
+  //       if (tag == 'dt') {
+  //         maps[d.text] = null;
+  //       } else {
+  //         print(d.querySelectorAll('code').map((e) => ,));
+  //         print('-' * 20);
+  //       }
+
+  //       // if (i.isEven) {
+  //       //   maps[d.text] = null;
+  //       // } else {
+  //       //   final child = e.children[i - 1];
+  //       //   print(d.innerHtml);
+  //       // }
+
+  //       // if (i == 0) {
+  //       //   maps[d.text] = null;
+  //       // } else {
+  //       //   final child = e.children[i - 1];
+
+  //       //   print(d.innerHtml);
+  //       //   print('-' * 20);
+
+  //       //   // maps[child.text.trim()] = d.innerHtml.trim();
+  //       // }
+  //     }
+  //   }
+  // }
+
   for (final e in children) {
     final eChildren = e.children;
 
     if (eChildren.isEmpty) {
-      docs.add(e.text);
+      docs.add(html2md.convert(e.innerHtml));
       continue;
     }
 
@@ -49,7 +87,41 @@ Future<void> main(List<String> args) async {
         maps[name] = null;
       } else if (tag == 'p') {
         final key = maps.keys.firstWhere((e) => maps[e] == null);
-        maps[key] = '/// ${name.trim().replaceAll('\n', ' ')}';
+
+        maps[key] = html2md.convert(
+          eChildren[i].innerHtml,
+          rules: [
+            html2md.Rule(
+              'add-cmd',
+              filterFn: (node) {
+                return node.nodeName == 'p' || node.nodeName == 'samp';
+              },
+              replacement: (content, node) {
+                return '/// $content';
+              },
+            ),
+            html2md.Rule(
+              'set-data',
+              filterFn: (node) {
+                return node.nodeName == 'dl';
+              },
+              replacement: (content, node) {
+                final buffer = StringBuffer()..writeln();
+                final nodes = node.childNodes().toList();
+                for (var i = 0; i < nodes.length; i++) {
+                  final n = nodes[i];
+                  if (i.isEven) {
+                    buffer.write('/// - `${n.textContent}`');
+                  } else {
+                    buffer.writeln(' ${n.textContent}');
+                  }
+                }
+                buffer.writeln('///');
+                return buffer.toString();
+              },
+            ),
+          ],
+        );
       }
     }
   }

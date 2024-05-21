@@ -32,27 +32,38 @@ class ClassBuilder {
     final fields = <Field>[];
     final parameters = <Parameter>[];
 
-    for (final name in maps.keys) {
-      final key = name.camelCase;
-
-      options["'$name'"] = key;
-
+    void addField(String name) {
       fields.add(
         Field(
           (b) => b
-            ..name = key
+            ..name = name
             ..type = const Reference('Object?')
             ..docs.add(maps[name] ?? ''),
         ),
       );
+    }
+
+    void addParameter(String name) {
       parameters.add(
         Parameter(
           (b) => b
-            ..name = key
+            ..name = name
             ..toThis = true
             ..named = true,
         ),
       );
+    }
+
+    for (final name in maps.keys) {
+      addField(name);
+
+      for (var e in name.split(',')) {
+        e = e.trim();
+        final key = e.length > 1 ? e.camelCase : e;
+
+        options["'$e'"] = key;
+        addParameter(key);
+      }
     }
 
     final constructor = Constructor(
